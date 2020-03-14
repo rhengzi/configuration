@@ -8,6 +8,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mzlogin/vim-markdown-toc'
+Plugin 'iamcco/markdown-preview.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -29,6 +33,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Plugin 'ryanoasis/vim-devicons'  
 " enhance nerdtree's tabs
 Plugin 'jistr/vim-nerdtree-tabs' 
+Plugin 'sillybun/vim-repl'
 " All of your Plugins must be added before the following line.
 call vundle#end()
 filetype plugin indent on
@@ -69,8 +74,8 @@ let g:ycm_semantic_triggers =  {
 \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 \ 'cs,lua,javascript': ['re!\w{2}'],
 \ }
-nnoremap <leader> gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader> gf :YcmCompleter GoToDefinition<CR>
+nnoremap gl :YcmCompleter GoToDeclaration<CR>
+nnoremap gf :YcmCompleter GoToDefinition<CR>
 """"""""""""""""""""""""""""""""""""
 " nerdTree的配置
 """"""""""""""""""""""""""""""""""""
@@ -169,9 +174,38 @@ tmap <F10>  <Plug>EasyDebuggerContinue
 nmap <F12>  <Plug>EasyDebuggerSetBreakPoint
 
 """""""""""""""""""""""""
+" vim-markdown
+"""""""""""""""""""""""""
+let g:vim_markdown_math = 1
+
+"""""""""""""""""""""""""
 " vim-indent-guides 
 """""""""""""""""""""""""
 let g:indent_guides_enable_on_vim_startup=0
+
+"""""""""""""""""""""""""
+" vim-repl
+"""""""""""""""""""""""""
+let g:repl_program = {
+            \   'python': 'ipython',
+            \   'default': 'zsh',
+            \   'r': 'R',
+            \   'lua': 'lua',
+            \   }
+let g:repl_predefine_python = {
+            \   'numpy': 'import numpy as np',
+            \   'matplotlib': 'from matplotlib import pyplot as plt'
+            \   }
+let g:repl_cursor_down = 1
+let g:repl_python_automerge = 1
+let g:repl_ipython_version = '7'
+nnoremap ;r :REPLToggle<Cr>
+autocmd Filetype python nnoremap ;d <Esc>:REPLDebugStopAtCurrentLine<Cr>
+autocmd Filetype python nnoremap ;n <Esc>:REPLPDBN<Cr>
+autocmd Filetype python nnoremap ;s <Esc>:REPLPDBS<Cr>
+let g:repl_position = 3
+let g:sendtorepl_invoke_key = ";;"
+let g:repl_vimscript_engine = 0
 
 """""""""""""""""""""""""
 " Quickly Run
@@ -216,7 +250,7 @@ noremap tj :tabNext<CR>
 noremap tk :tabPrevious<CR>
 
 " 在一般模式下打开终端
-nnoremap tt :term ++rows=4<CR>
+nnoremap tt :term ++rows=6<CR>
 
 colorscheme elflord
 
