@@ -252,7 +252,7 @@ noremap tk :tabPrevious<CR>
 " 在一般模式下打开终端
 nnoremap tt :term ++rows=6<CR>
 
-colorscheme elflord
+colorscheme murphy
 
 set nu
 set hlsearch
