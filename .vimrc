@@ -159,3 +159,8 @@ set expandtab
 set splitbelow
 set splitright
 noremap ss :source $MYVIMRC<CR>
+
+set cursorline
+set cursorcolumn
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
