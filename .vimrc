@@ -12,8 +12,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tmhedberg/simpylfold'
 Plug 'jiangmiao/auto-pairs'
+Plug 'davidhalter/jedi-vim'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
+
+""""""""""""""""""""""""""""""""""""
+" snips的配置
+""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
 
 """"""""""""""""""""""""""""""""""""
 " simpylfold的配置
@@ -72,13 +82,29 @@ nnoremap gl :YcmCompleter GoToDeclaration<CR>
 nnoremap gf :YcmCompleter GoToDefinition<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 "2. 代码提示
-let g:ycm_auto_trigger=1
+let g:ycm_auto_trigger=1  " 函数提示
+let g:ycm_echo_current_diagnostic = 0 " 不对当前行进行语法检查 
+let g:ycm_complete_in_comments = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/configuration/global_extra_conf.py'
+
+
 
 """""""""""""""""""""""""
 " vim-repl的配置
 """""""""""""""""""""""""
 let g:repl_program = {
-            \   'python': 'ipython',
+            \   'python': 'ipython3',
             \   'default': 'zsh',
             \   'r': 'R',
             \   'lua': 'lua',
